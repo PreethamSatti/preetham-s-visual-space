@@ -1,13 +1,44 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Helmet } from 'react-helmet-async';
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
+import MarqueeSection from '@/components/Marquee';
+import Works from '@/components/Works';
+import About from '@/components/About';
+import Services from '@/components/Services';
+import Skills from '@/components/Skills';
+import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <>
+      <Helmet>
+        <title>Preetham Satti | Visual Designer & Motion Graphics</title>
+        <meta
+          name="description"
+          content="Portfolio of Preetham Satti - Visual Designer, Graphic Designer, and Motion & Video Editor. Creating aesthetic, visually engaging designs through graphics, motion, and video."
+        />
+        <meta
+          name="keywords"
+          content="visual designer, graphic designer, motion graphics, video editor, branding, poster design, UI/UX"
+        />
+        <link rel="canonical" href="https://preetham-satti.com" />
+      </Helmet>
+
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main>
+          <Hero />
+          <MarqueeSection />
+          <Works />
+          <About />
+          <Services />
+          <Skills />
+          <Contact />
+        </main>
+        <Footer />
       </div>
-    </div>
+    </>
   );
 };
 
