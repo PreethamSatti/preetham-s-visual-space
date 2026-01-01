@@ -5,7 +5,6 @@ import { Menu, X } from 'lucide-react';
 const navItems = [
   { name: 'Work', href: '#work' },
   { name: 'About', href: '#about' },
-  { name: 'Services', href: '#services' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -23,20 +22,76 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'bg-background/90 backdrop-blur-md border-b border-border' : ''
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-background/90 backdrop-blur-md border-b border-border' : ''
+        }`}
     >
       <nav className="container-wide flex items-center justify-between py-5 px-6 md:px-12 lg:px-20">
         {/* Logo */}
         <motion.a
           href="#"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="font-display text-lg font-semibold tracking-tight"
+          className="font-display font-bold tracking-tight flex items-baseline gap-2"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.2, // Wait a bit before starting
+              },
+            },
+          }}
         >
-          PREETHAM SATTI
+          {/* PREETHAM */}
+          <span className="flex items-baseline">
+            <motion.span
+              variants={{
+                hidden: { opacity: 0, y: 10 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+              }}
+              className="text-2xl"
+            >
+              P
+            </motion.span>
+            {'REETHAM'.split('').map((char, index) => (
+              <motion.span
+                key={`p-${index}`}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { duration: 0.05 } } // Sharp, instant reveal for typewriter feel
+                }}
+                className="text-base"
+              >
+                {char}
+              </motion.span>
+            ))}
+          </span>
+
+          {/* SATTI */}
+          <span className="flex items-baseline">
+            <motion.span
+              variants={{
+                hidden: { opacity: 0, y: 10 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+              }}
+              className="text-2xl"
+            >
+              S
+            </motion.span>
+            {'ATTI'.split('').map((char, index) => (
+              <motion.span
+                key={`s-${index}`}
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { duration: 0.05 } }
+                }}
+                className="text-base"
+              >
+                {char}
+              </motion.span>
+            ))}
+          </span>
         </motion.a>
 
         {/* Desktop Navigation */}

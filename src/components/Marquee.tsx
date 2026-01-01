@@ -1,17 +1,28 @@
+import icon1 from '@/assets/tools/icon-1.png';
+import icon2 from '@/assets/tools/icon-2.png';
+import icon3 from '@/assets/tools/icon-3.png';
+import icon4 from '@/assets/tools/icon-4.png';
+import icon5 from '@/assets/tools/icon-5.png';
+import icon6 from '@/assets/tools/icon-6.png';
+import icon7 from '@/assets/tools/icon-7.png';
+
 const MarqueeSection = () => {
-  const items = ['MY WORKS', 'MY WORKS', 'MY WORKS', 'MY WORKS', 'MY WORKS', 'MY WORKS'];
-  
+  const icons = [icon1, icon2, icon3, icon4, icon5, icon6, icon7];
+
   return (
-    <div className="py-8 border-y border-border overflow-hidden">
-      <div className="flex animate-marquee whitespace-nowrap">
-        {[...items, ...items].map((item, index) => (
-          <span
+    <div className="py-1 border-y border-border overflow-hidden bg-background">
+      <div className="flex animate-marquee whitespace-nowrap items-center">
+        {[...icons, ...icons, ...icons, ...icons].map((icon, index) => (
+          <div
             key={index}
-            className="mx-8 font-display text-2xl md:text-3xl font-light tracking-wider text-muted-foreground flex items-center gap-8"
+            className="mx-12 w-20 h-20 md:w-28 md:h-28 flex-shrink-0 grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
           >
-            {item}
-            <span className="text-accent">×</span>
-          </span>
+            <img
+              src={icon}
+              alt="Tool Icon"
+              className="w-full h-full object-contain"
+            />
+          </div>
         ))}
       </div>
     </div>

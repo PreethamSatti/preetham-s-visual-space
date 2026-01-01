@@ -21,12 +21,25 @@ const Hero = () => {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
+              whileHover="hover"
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold leading-[0.95] tracking-tight mb-6"
+              className="font-display text-5xl md:text-7xl lg:text-8xl font-semibold leading-[0.95] tracking-tight mb-6 cursor-default"
             >
-              <span className="text-gold">VISUAL</span>
+              <motion.span
+                variants={{ hover: { x: -30 } }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="text-gold inline-block"
+              >
+                VISUAL
+              </motion.span>
               <br />
-              DESIGNER
+              <motion.span
+                variants={{ hover: { x: 30 } }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="inline-block"
+              >
+                DESIGNER
+              </motion.span>
               <br />
               <span className="font-light italic text-accent">Portfolio</span>
             </motion.h1>
@@ -48,19 +61,25 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-wrap gap-4"
             >
-              <a
+              <motion.a
                 href="#work"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-body text-sm font-medium tracking-wide hover:bg-primary/90 transition-colors"
+                data-cursor="link"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 View Portfolio
                 <ArrowDown size={16} />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href="#contact"
                 className="inline-flex items-center gap-2 px-6 py-3 border border-primary text-primary font-body text-sm font-medium tracking-wide hover:bg-primary hover:text-primary-foreground transition-colors"
+                data-cursor="link"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 Contact Me
-              </a>
+              </motion.a>
             </motion.div>
           </div>
 
@@ -71,7 +90,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="order-1 lg:order-2 flex justify-center lg:justify-end"
           >
-            <div className="relative">
+            <div className="relative" data-cursor="hello">
               <div className="w-64 h-80 md:w-80 md:h-96 lg:w-96 lg:h-[480px] overflow-hidden">
                 <img
                   src={profilePhoto}

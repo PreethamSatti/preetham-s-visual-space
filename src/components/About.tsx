@@ -26,33 +26,7 @@ const About = () => {
               </p>
             </div>
 
-            {/* Skills Grid */}
-            <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-              <div>
-                <h4 className="font-body text-xs font-medium tracking-widest uppercase text-muted-foreground mb-3">
-                  Skills
-                </h4>
-                <ul className="space-y-2 font-body text-sm">
-                  <li>Adobe Photoshop</li>
-                  <li>Adobe Illustrator</li>
-                  <li>Adobe Premiere Pro</li>
-                  <li>Adobe After Effects</li>
-                  <li>Figma</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-body text-xs font-medium tracking-widest uppercase text-muted-foreground mb-3">
-                  Passion
-                </h4>
-                <ul className="space-y-2 font-body text-sm">
-                  <li>Visual Design</li>
-                  <li>Motion Graphics</li>
-                  <li>Poster Design</li>
-                  <li>Brand Identity</li>
-                  <li>Video Editing</li>
-                </ul>
-              </div>
-            </div>
+            {/* Skills/Passion moved to Skills section */}
           </motion.div>
 
           {/* Education & Experience */}

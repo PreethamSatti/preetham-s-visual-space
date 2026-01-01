@@ -1,23 +1,61 @@
 import { motion } from 'framer-motion';
-import { Mail, ExternalLink } from 'lucide-react';
-import { useState } from 'react';
+import { Mail, ExternalLink, Send } from 'lucide-react';
+import { useRef, useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  const form = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: '',
+    message: ''
   });
+  const [isSending, setIsSending] = useState(false);
   const { toast } = useToast();
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: 'Message sent!',
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    setFormData({ name: '', email: '', message: '' });
+    setIsSending(true);
+
+    if (form.current) {
+      emailjs
+        .sendForm(
+          import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
+          form.current,
+          import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+        )
+        .then(
+          () => {
+            toast({
+              title: 'Message sent!',
+              description: "Thank you for reaching out. I'll get back to you soon.",
+            });
+            setFormData({ name: '', email: '', message: '' });
+          },
+          (error) => {
+            toast({
+              title: 'Failed to send',
+              description: "Something went wrong. Please try again later.",
+              variant: "destructive"
+            });
+            console.error('FAILED...', error.text);
+          }
+        )
+        .finally(() => {
+          setIsSending(false);
+        });
+    }
   };
 
   return (
@@ -44,26 +82,32 @@ const Contact = () => {
                 </h4>
                 <ul className="space-y-2">
                   <li>
-                    <a
-                      href="https://behance.net"
+                    <motion.a
+                      href="https://www.behance.net/sattipreetham"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-body text-sm flex items-center gap-2 hover:text-accent transition-colors"
+                      className="font-body text-sm flex items-center gap-2 hover:text-accent transition-colors w-fit"
+                      data-cursor="link"
+                      whileHover={{ x: 5 }}
+                      whileTap={{ scale: 0.95 }}
                     >
                       Behance
                       <ExternalLink size={12} />
-                    </a>
+                    </motion.a>
                   </li>
                   <li>
-                    <a
-                      href="https://linkedin.com"
+                    <motion.a
+                      href="https://www.linkedin.com/in/satti-preetham-419631399/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-body text-sm flex items-center gap-2 hover:text-accent transition-colors"
+                      className="font-body text-sm flex items-center gap-2 hover:text-accent transition-colors w-fit"
+                      data-cursor="link"
+                      whileHover={{ x: 5 }}
+                      whileTap={{ scale: 0.95 }}
                     >
                       LinkedIn
                       <ExternalLink size={12} />
-                    </a>
+                    </motion.a>
                   </li>
                 </ul>
               </div>
@@ -73,13 +117,16 @@ const Contact = () => {
                 </h4>
                 <ul className="space-y-2">
                   <li>
-                    <a
-                      href="mailto:preetham.satti@email.com"
-                      className="font-body text-sm flex items-center gap-2 hover:text-accent transition-colors"
+                    <motion.a
+                      href="mailto:satti.preetham@gmail.com"
+                      className="font-body text-sm flex items-center gap-2 hover:text-accent transition-colors w-fit"
+                      data-cursor="link"
+                      whileHover={{ x: 5 }}
+                      whileTap={{ scale: 0.95 }}
                     >
                       <Mail size={12} />
-                      preetham.satti@email.com
-                    </a>
+                      satti.preetham@gmail.com
+                    </motion.a>
                   </li>
                 </ul>
               </div>
@@ -93,7 +140,7 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={form} onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label
                   htmlFor="name"
@@ -104,6 +151,7 @@ const Contact = () => {
                 <input
                   type="text"
                   id="name"
+                  name="user_name"
                   value={formData.name}
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
@@ -124,6 +172,7 @@ const Contact = () => {
                 <input
                   type="email"
                   id="email"
+                  name="user_email"
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -143,6 +192,7 @@ const Contact = () => {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
@@ -154,12 +204,17 @@ const Contact = () => {
                 />
               </div>
 
-              <button
+              <motion.button
                 type="submit"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-body text-sm font-medium tracking-wide hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-body text-sm font-medium tracking-wide hover:bg-primary/90 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                data-cursor="send"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                disabled={isSending}
               >
-                Send Message
-              </button>
+                {isSending ? 'Sending...' : 'Send Message'}
+                <Send size={16} />
+              </motion.button>
             </form>
           </motion.div>
         </div>
