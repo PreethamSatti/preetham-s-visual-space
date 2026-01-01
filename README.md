@@ -1,73 +1,101 @@
-# Welcome to your Lovable project
+# Preetham's Visual Space
 
-## Project info
+Welcome to **Preetham's Visual Space** – a personal portfolio website designed to showcase creative work, brand identity projects, and visual storytelling. This project is built with modern web technologies, focusing on immersive interactions, seamless animations, and a premium aesthetic.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+![Project Preview](public/og-image.png)
 
-## How can I edit this code?
+## 🚀 Features
 
-There are several ways of editing your application.
+- **Immersive User Experience**:
+  - **Custom Cursor**: A physics-based custom cursor with context-sensitive states (hover, link, text) for a tactile feel.
+  - **Seamless Animations**: Smooth page transitions and element reveals powered by **Framer Motion**.
+  - **Infinite Marquee**: A perfectly seamless looping ticker showcasing tools and skills.
 
-**Use Lovable**
+- **Visual Showcase**:
+  - **Project Gallery**: A "My Work" section featuring case studies, high-quality imagery, and detailed project descriptions.
+  - **Brand Identity**: Dedicated sections for branding work with rich typography and layout.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- **Modern Tech Stack**:
+  - Built with **React** and **Vite** for blazing fast performance.
+  - Styled with **Tailwind CSS** for a responsive, mobile-first design.
+  - Components from **shadcn/ui** for accessible and consistent UI elements.
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Contact Integration**:
+  - Secure contact form powered by **EmailJS** to send messages directly without a backend.
 
-**Use your preferred IDE**
+## 🛠️ Tech Stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Framework**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **UI Architecture**: [shadcn/ui](https://ui.shadcn.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Email Service**: [EmailJS](https://www.emailjs.com/)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🏃‍♂️ Getting Started
 
-Follow these steps:
+### Prerequisites
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Ensure you have **Node.js** (v18+) installed on your machine.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Installation
 
-# Step 3: Install the necessary dependencies.
-npm i
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/preetham-s-visual-space.git
+   cd preetham-s-visual-space
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up Environment Variables**
+   Create a `.env` file in the root directory and add your EmailJS credentials:
+   ```env
+   VITE_EMAILJS_SERVICE_ID=your_service_id
+   VITE_EMAILJS_TEMPLATE_ID=your_template_id
+   VITE_EMAILJS_PUBLIC_KEY=your_public_key
+   ```
+
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
+
+## 📦 Building for Production
+
+To create a production-ready build:
+
+```bash
+npm run build
 ```
 
-**Edit a file directly in GitHub**
+This will generate a `dist` folder containing the optimized static assets, ready for deployment.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🚀 Deployment (GitHub Pages)
 
-**Use GitHub Codespaces**
+To deploy this site to GitHub Pages:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+1. Update `vite.config.ts` to set the base path:
+   ```ts
+   export default defineConfig({
+     base: "/preetham-s-visual-space/", // Replace with your repo name
+     plugins: [react()],
+     // ...
+   })
+   ```
 
-## What technologies are used for this project?
+2. Build the project:
+   ```bash
+   npm run build
+   ```
 
-This project is built with:
+3. Push the contents of the `dist` folder to your customized deployment branch (e.g., `gh-pages`).
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Designed & Developed by **Preetham**.
